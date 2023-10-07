@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "declaration": true,
+    "declarationDir": "dist/",
+    "emitDeclarationOnly": true,
+    "isolatedModules": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "outDir": "dist/",
+    "strict": true,
+    "typeRoots": ["./node_modules/@types", "./src/types.d.ts"]
+  }
+}

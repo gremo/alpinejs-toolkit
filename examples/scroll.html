@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>Scroll Plugin</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-800 px-4 text-slate-200">
+    <div x-data class="flex justify-center gap-4 p-4">
+      <button @click="$scroll('#section')" class="rounded-xl bg-violet-500 px-6 py-4">Scroll to #section</button>
+      <button @click="$scroll('400')" class="rounded-xl bg-violet-500 px-6 py-4">Scroll down to 400px</button>
+    </div>
+
+    <p style="height: 2000"></p>
+
+    <h1 id="section" class="border-b pb-4 text-2xl">This is #section</h1>
+
+    <p style="height: 2000"></p>
+
+    <button x-data @click="$scroll('body')" class="fixed bottom-2 right-2 rounded-xl bg-violet-500 px-6 py-4">
+      Scroll to Top
+    </button>
+
+    <script type="module">
+      import Scroll from '/dist/scroll/index.js';
+      import Alpine from '/node_modules/alpinejs/dist/module.esm.js';
+
+      Alpine.plugin(Scroll);
+      Alpine.start();
+    </script>
+  </body>
+</html>

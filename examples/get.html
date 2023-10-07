@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <title>Get Plugin</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-800 px-4 text-slate-200">
+    <div x-data="{ state: {} }" x-init="state = $get('https://dummyjson.com/posts', { limit: 10 })">
+      <p x-show="state.loading" x-cloak>Loading...</p>
+      <p x-show="state.error" x-cloak>Ops... an error occurred.</p>
+
+      <template x-if="!state.loading && !state.error">
+        <ul>
+          <template x-for="post in state.data.posts">
+            <li x-text="post.title"></li>
+          </template>
+        </ul>
+      </template>
+    </div>
+    <!--
+    <div class="flex h-screen items-center justify-center">
+      <div class="rounded-xl border border-slate-200 p-8" x-data="{ state: {} }">
+        <h1 class="mb-4 text-center text-3xl">Todos</h1>
+
+        <p x-show="state.loading" x-cloak class="text-center text-cyan-500">Loading...</p>
+        <p x-show="state.error" x-cloak class="text-center text-red-500">An error occorred during fetch.</p>
+
+        <template x-if="!state.loading">
+          <ul x-data="{ todos: state.data?.todos ?? [] }" class="list-inside list-disc">
+            <template x-for="item in todos">
+              <li x-text="item.todo" :class='{ "line-through text-gray-400": item.completed }'></li>
+            </template>
+          </ul>
+        </template>
+
+        <div class="my-4 flex justify-center gap-4">
+          <button
+            class="rounded-lg bg-green-500 px-6 py-2"
+            @click="state = $get('https://dummyjson.com/todos', { limit: 10 })">
+            Fetch OK
+          </button>
+          <button class="rounded-lg bg-red-500 px-6 py-2" @click="state = $get('https://dummyjson.com/foo')">
+            Fetch KO
+          </button>
+        </div>
+      </div>
+    </div>
+-->
+    <script type="module">
+      import Get from '/dist/get/index.js';
+      import Alpine from '/node_modules/alpinejs/dist/module.esm.js';
+
+      Alpine.plugin(Get);
+      Alpine.start();
+    </script>
+  </body>
+</html>

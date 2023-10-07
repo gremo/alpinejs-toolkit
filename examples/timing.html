@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>Timing Plugin</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-800 px-4 text-slate-200">
+    <div class="flex h-screen flex-col items-center justify-center gap-4">
+      <div
+        class="rounded-xl border border-slate-200 p-8 text-3xl"
+        x-data="{ count: 0, interval: null }"
+        x-init="interval = $every(1000, () => count++)">
+        <p class="mb-4 text-center">
+          <code>$every</code>
+        </p>
+        <p class="mb-4 text-center">Counter: <span class="text-violet-500" x-text="count"></span></p>
+        <div class="flex gap-4">
+          <a class="cursor-pointer" @click="interval.cancel()"><code>cancel()</code></a>
+          <a class="cursor-pointer" @click="interval.restart()"><code>restart()</code></a>
+        </div>
+      </div>
+
+      <div
+        class="rounded-xl border border-slate-200 p-8 text-3xl"
+        x-data="{ done: false, after: null }"
+        x-init="after = $after(5000, () => { done = true; })">
+        <p class="mb-4 text-center">
+          <code>$after</code>
+        </p>
+        <p class="mb-4 text-center">Done: <span class="text-violet-500" x-text="done"></span></p>
+        <div class="flex gap-4">
+          <a class="cursor-pointer" @click="interval.cancel()"><code>cancel()</code></a>
+          <a class="cursor-pointer" @click="done = false; interval.restart()"><code>restart()</code></a>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import Timing from '/dist/timing/index.js';
+      import Alpine from '/node_modules/alpinejs/dist/module.esm.js';
+
+      Alpine.plugin(Timing);
+      Alpine.start();
+    </script>
+  </body>
+</html>

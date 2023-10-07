@@ -1,0 +1,74 @@
+{
+  "name": "alpinejs-toolkit",
+  "version": "0.0.0",
+  "description": "A collection of small and dependency-free Alpine.js utilities",
+  "author": "Marco Polichetti <gremo1982@gmail.com>",
+  "license": "ISC",
+  "homepage": "https://github.com/gremo/alpinejs-toolkit",
+  "keywords": [
+    "alpine",
+    "alpinejs",
+    "alpine.js",
+    "magin",
+    "plugin",
+    "directive",
+    "helpers"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gremo/alpinejs-toolkit.git"
+  },
+  "module": "dist/index.js",
+  "browser": "dist/cdn.min.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c rollup.config.ts --configPlugin @rollup/plugin-typescript",
+    "examples": "live-server ./examples --no-browser --watch --mount=/dist:./dist --mount=/node_modules:./node_modules",
+    "lint:fix": "npm run lint -- --fix",
+    "lint": "eslint .",
+    "prebuild": "rimraf dist",
+    "prepare": "husky install",
+    "prettier:fix": "prettier -w .",
+    "prettier": "prettier -c .",
+    "watch": "npm run build -- -w"
+  },
+  "peerDependencies": {
+    "alpinejs": "^3.0"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.22.15",
+    "@babel/preset-env": "^7.23.2",
+    "@babel/preset-typescript": "^7.23.2",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@trivago/prettier-plugin-sort-imports": "^4.2.1",
+    "@types/alpinejs": "^3.13.3",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
+    "alpinejs": "^3.13.2",
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "glob": "^10.3.10",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.1.0",
+    "live-server": "^1.2.2",
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.6",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.1.4",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2"
+  },
+  "lint-staged": {
+    "*.{ts}": [
+      "eslint --fix"
+    ],
+    "*": [
+      "prettier -w --ignore-unknown"
+    ]
+  }
+}

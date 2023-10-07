@@ -1,0 +1,9 @@
+{
+  "plugins": ["prettier-plugin-tailwindcss", "@trivago/prettier-plugin-sort-imports"],
+  "semi": true,
+  "singleQuote": true,
+  "quoteProps": "consistent",
+  "bracketSameLine": true,
+  "printWidth": 120,
+  "arrowParens": "avoid"
+}

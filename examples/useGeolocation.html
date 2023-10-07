@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>UseGeolocation Plugin</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-800 px-4 text-slate-200">
+    <div class="flex h-screen items-center justify-center">
+      <div
+        class="rounded-xl border border-slate-200 p-8 text-3xl"
+        x-data="{ state: {} }"
+        x-init="state = $geolocation({ timeout: 5000 })">
+        <template x-if="state.error">
+          <p class="text-red-500" x-text="`${state.error.message} (code: ${state.error.code})`"></p>
+        </template>
+        <template x-if="state.position">
+          <div>
+            <p class="mb-4 text-center">Geolocation</p>
+            <ul class="space-y-2">
+              <template x-for="prop in Object.keys(state.position)" :key="prop">
+                <li class="flex items-center justify-between gap-4">
+                  <span class="font-mono text-base" x-text="prop"></span>
+                  <span class="text-sm" x-text="state.position[prop] ?? '-'"></span>
+                </li>
+              </template>
+            </ul>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <script type="module">
+      import UseGeolocation from '/dist/useGeolocation/index.js';
+      import Alpine from '/node_modules/alpinejs/dist/module.esm.js';
+
+      Alpine.plugin(UseGeolocation);
+      Alpine.start();
+    </script>
+  </body>
+</html>

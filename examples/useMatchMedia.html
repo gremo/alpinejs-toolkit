@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>UseMatchMedia Plugin</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-800 px-4 text-slate-200">
+    <div class="flex h-screen items-center justify-center">
+      <div
+        class="rounded-xl border border-slate-200 p-8 text-3xl"
+        x-data='$useMatchMedia({ isMd: "(min-width: 768px)", isXl: "(min-width: 1500px)" })'
+        x-show="isMd"
+        x-cloak>
+        <p>This is shown only if viewport width is larger than "md".</p>
+      </div>
+    </div>
+
+    <script type="module">
+      import UseMatchMedia from '/dist/useMatchMedia/index.js';
+      import Alpine from '/node_modules/alpinejs/dist/module.esm.js';
+
+      Alpine.plugin(UseMatchMedia);
+      Alpine.start();
+    </script>
+  </body>
+</html>

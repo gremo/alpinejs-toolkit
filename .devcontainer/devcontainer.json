@@ -1,0 +1,35 @@
+{
+  "image": "node:lts",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils": {
+      "installZsh": false
+    }
+  },
+  "postCreateCommand": "npm install",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "eslint.enable": true,
+        "eslint.format.enable": true,
+        "files.exclude": {
+          ".husky/": true,
+          "node_modules/": true
+        },
+        "markdownlint.run": "onSave",
+        "prettier.enable": true
+      },
+      "extensions": [
+        "bradlc.vscode-tailwindcss",
+        "DavidAnson.vscode-markdownlint",
+        "dbaeumer.vscode-eslint",
+        "donjayamanne.githistory",
+        "editorconfig.editorconfig",
+        "esbenp.prettier-vscode",
+        "Gruntfuggly.todo-tree",
+        "remcohaszing.schemastore"
+      ]
+    }
+  }
+}
